@@ -1,5 +1,5 @@
 # Sunicorns  
-[https://becodeorg.github.io/jepsen-js-web-sunicorns/](https://becodeorg.github.io/jepsen-js-web-sunicorns/)
+[https://shadush.github.io/jepsen-js-web-sunicorns/](https://shadush.github.io/jepsen-js-web-sunicorns/)
 
 
 # Group exercise Javascript for the Web
