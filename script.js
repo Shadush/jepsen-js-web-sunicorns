@@ -13,6 +13,33 @@ import "./style.scss";
 
 import {markdown} from 'markdown';
 
+const modal_template = `<button id="plans" type="button" class="btn btn-primary" data-toggle="modal" data-target="#PLANS">
+  sunicornsmes
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="PLANS" tabindex="-1" role="dialog" aria-labelledby="PLANSLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="Sunicorns" id="PLANSLabel">Sunicorns</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary">Comment idea</button>
+        <button type="button" class="btn btn-outline-success">Edit idea</button>
+        <button type="button" class="btn btn-outline-danger">Delete idea</button>
+      </div>
+    </div>
+  </div>
+</div>`;
+
+
 
 let text = "# Snowmania \n" + "## byRomain \n" + "The *goal* is to make snow fall **perpetually** so that people will always have their houses covered in snow. As they are all outside they\’ll make snowfights non stop. Having nowhere to live/ warm up they will be freezing to death or die of hypothermia.";
 let text2 = "# Becode is love \n" + "## bySouSou \n" + "Mass produce the becode condoms so that the world population rise up steadily. Ten or so years laters the population will more than double. The CO2 quantity in the atmosphere will explode, acidic rain and unhealthy air quality becoming the usual standard. Fifty years later the planet will ends up overusing its resources and the world would start its fall. ";
@@ -28,19 +55,24 @@ text4 = markdown.toHTML(text4);
 text5 = markdown.toHTML(text5);
 text6 = markdown.toHTML(text6);
 
-createElement('Snowmania', text);
-createElement('Becode is love', text2);
-createElement('Plan 42', text3);
-createElement('Conquer the world', text4);
-createElement('Animals', text5);
-createElement('Folamour', text6);
+storeElement('Snowmania', text);
+storeElement('Becode_is_love', text2);
+storeElement('Plan_42', text3);
+storeElement('Conquer_the_world', text4);
+storeElement('Animals', text5);
+storeElement('Folamour', text6);
+createModal(".content", 'Snowmania');
+createModal(".content", 'Becode_is_love');
+createModal(".content", 'Plan_42');
+createModal(".content", 'Conquer_the_world');
+createModal(".content", 'Animals');
+createModal(".content", 'Folamour');
 
-function createElement(key, text) {
 
-  let p = document.createElement("p");
-  p.innerText = key;
-  p.className = "idea";
-  document.querySelector(".content").appendChild(p);
+//createModal(".content", text2);
+
+function storeElement(key, text) {
+
   localStorage.setItem(key, text);
 }
 
@@ -54,7 +86,23 @@ for (let i = 0; i < ideas.length; i++) {
     console.log(x);
   });
 }
-//console.log(localStorage.getItem('item2'));
-//console.log(localStorage.getItem('item3'));
+
+function createModal(target, key) {
+
+  let div = document.createElement("div");
+  div.innerHTML = modal_template;
+  document.querySelector(target).appendChild(div);
+  let id = document.getElementById('plans');
+  console.log(id);
+  id.dataset.target = "#" + key;
+  id.id = "#" + key;
+  console.log(id.dataset.target);
+  document.querySelector("#PLANS").id = key;
+
+  div.querySelector(".btn").innerText = key;
+  div.querySelector(".modal-body").innerHTML = localStorage.getItem(key);
+
+
+}
 
 console.log("Hey look in your browser console. It works!");
