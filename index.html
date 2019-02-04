@@ -1,7 +1,25 @@
 <!DOCTYPE html>
 <html lang="fr">
 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>BeCode/JavaScript for the Web Exercise</title>
+
+  <link rel="icon" href="images/logo_sunicorns_16_16.ico" />
+  <link rel="stylesheet" href="style.scss">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+</head>
+
 <body>
+  <div class="title">
+    <img src="images/logo-sunicorns.png" alt="">
+    <h1> Sunicorns</h1>
+  </div>
   <div class="container">
     <header>
       <h1>BeCode / JavaScript for the Web</h1>
@@ -11,10 +29,15 @@
     </header>
     <div class="content">
       <p>
+        <i class="fas fa-arrow-right"></i>
+
+        <button type="button" class="btn btn-outline-primary">Create idea</button>
+        <button type="button" class="btn btn-outline-success">Edit idea</button>
+        <button type="button" class="btn btn-outline-danger">Delete idea</button>
 
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-          sunicornsmes
+          Launch demo modal
         </button>
 
         <!-- Modal -->
@@ -22,7 +45,7 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="Sunicorns" id="exampleModalLabel">Sunicorns</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -31,29 +54,19 @@
                 ...
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-outline-primary">Comment idea</button>
-                <button type="button" class="btn btn-outline-success">Edit idea</button>
-                <button type="button" class="btn btn-outline-danger">Delete idea</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
               </div>
-              <form>
-                <div class="form-group">
-                  <input class="form-control" type="text" placeholder="Name of your pathetic plan">
-                  <label for="exampleFormControlTextarea1">Your plan to conquer the world</label>
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                  <button type="submit" class="btn btn-primary mb-2">Submit</button>
-                </div>
-              </form>
             </div>
           </div>
         </div>
 
-        <button type="button" class="btn btn-outline-primary">Create idea</button>
 
+        <i class="fas fa-arrow-left"></i>
       </p>
     </div>
   </div>
 
-  <script src="./script.js"></script>
-</body>
-
-</html>
+    <script src="./script.js"></script>
+  </body>
+</html
