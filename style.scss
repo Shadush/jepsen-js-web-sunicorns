@@ -7,4 +7,49 @@
 /*
   If you need some CSS for any reason you can put it here.
 */
+*{
+  margin: 0;
+  padding: 0;
+}
+.title{
+  background: url('images/logo-sunicorns.png') no-repeat bottom;
+}
+.title h1{
+  font-family: 'Kaushan Script', cursive;
+  text-shadow: #FC0 1px 0 10px;
+  text-align: center;
+  color: #000;
+  font-size: 140px;
+  height: 400px;
+  width: 750px;
+  padding-top: 100px;
+  margin: 0 auto;
+  background:rgba(0,0,0,0);
 
+}
+header h1, header h2{
+  background:rgba(0,0,0,0.5);
+}
+
+body{
+  background: linear-gradient(red, Black) no-repeat fixed;
+
+}
+
+.content{
+  background:rgba(0,0,0,0.5);
+  color: #fff;
+}
+form,form input.form-control, form textarea.form-control, .modal-content{
+  color: #fff;
+  background: #000;
+}
+
+.btn{
+  background: #000;
+  border-color: red;
+  margin-bottom: 20px;
+}
+.btn:hover{
+  background-color: red;
+}
