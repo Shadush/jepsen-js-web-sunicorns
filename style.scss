@@ -7,4 +7,33 @@
 /*
   If you need some CSS for any reason you can put it here.
 */
+*{
+  margin: 0;
+  padding: 0;
+}
+.title{
 
+}
+.title h1{
+  font-family: 'Kaushan Script', cursive;
+  text-shadow: #FC0 1px 0 10px;
+  text-align: center;
+  color: #000;
+  font-size: 140px;
+  width: 750px;
+  margin: 0 auto 100px auto;
+  background:rgba(0,0,0,0);
+
+}
+header h1, header h2{
+  background:rgba(0,0,0,0.5);
+}
+
+body{
+  background: linear-gradient(Red, Black);
+}
+
+.content{
+  background:rgba(0,0,0,0.5);
+  color: #fff;
+}
