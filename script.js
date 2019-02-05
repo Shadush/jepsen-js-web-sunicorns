@@ -13,6 +13,16 @@ import "./style.scss";
   Put the JavaScript code you want below.
 */
 
+let idea = {
+
+  init: function (text) {
+    this.text = text;
+    this.comment = [];  
+  },
+
+}
+
+
 
 function storeElement(key, text) {
 
@@ -27,7 +37,8 @@ function createModal(key) {
   let id = document.getElementById('plans');
   div.querySelector(".btn").innerText = key;
   console.log(localStorage.getItem(key));
-  div.querySelector(".modal-body").innerHTML = md.render(localStorage.getItem(key));
+  console.log(localStorage.getItem(key).text);
+  div.querySelector(".modal-body").innerHTML = md.render(JSON.parse(localStorage.getItem(key)).text);
   id.dataset.target = "#" + key;
   id.id = "#" + key;
   document.querySelector("#PLANS").id = key;
@@ -78,15 +89,39 @@ let text6 = "# Opération Folamour \n## Take control of all the nuclear warheads
 var nbvisites = localStorage.getItem('visites');
 
 if (nbvisites == null) {
-  storeElement('Snowmania', text);
-  storeElement('Becode_is_love', text2);
-  storeElement('Plan_42', text3);
-  storeElement('Conquer_the_world', text4);
-  storeElement('Animals', text5);
-  storeElement('Folamour', text6);
+  let idea_one = Object.create(idea);
+  idea_one.init(text);
+  console.log("1");
+  console.log(idea_one.text);
+  let idea_two = Object.create(idea);
+  idea_two.init(text2);
+  let idea_three = Object.create(idea);
+  idea_three.init(text3);
+  let idea_four = Object.create(idea);
+  idea_four.init(text4);
+  let idea_five = Object.create(idea);
+  idea_five.init(text5);
+  let idea_six = Object.create(idea);
+  idea_six.init(text6);
+
+
+  
+  storeElement('Snowmania', JSON.stringify(idea_one));
+  storeElement('Becode_is_love', JSON.stringify(idea_two));
+  storeElement('Plan_42', JSON.stringify(idea_three));
+  storeElement('Conquer_the_world', JSON.stringify(idea_four));
+  storeElement('Animals', JSON.stringify(idea_five));
+  storeElement('Folamour', JSON.stringify(idea_six));
   nbvisites = 1;
   storeElement('visites', 1);
+//  localStorage.clear();
 }
+
+//localStorage.clear();
+
+
+
+
 
 for (let i = 0; i < localStorage.length; i++) {
 
@@ -97,24 +132,38 @@ for (let i = 0; i < localStorage.length; i++) {
 
 //localStorage.clear();
 
+
+
+let comment_idea =  document.querySelectorAll(".btn-outline-primary");
+for (let i = 0; i<comment_idea.lenght; i++){
+  comment_idea[i].addEventListener("click", (event) => {
+  
+
+  //  let comment_idea = 
+  })
+}
+
+
 let edit_idea = document.querySelectorAll(".btn-outline-success");
-  for (let i = 0; i < edit_idea.length; i++){
-
-    edit_idea[i].addEventListener("click", (event) => {
-    let edit_selector = event.target.closest(".modal-content").childNodes[3];
-    let key = event.target.closest(".modal.fade").id;
-    let form = document.createElement("form");
-    form.innerHTML = form_template;
-    form.querySelector(".form-control").innerText = localStorage.getItem(key);
-    edit_selector.appendChild(form);
-    form.querySelector(".mb-2").addEventListener("click", () =>{
-      let text = form.querySelector(".form-control").value;
-      localStorage.removeItem(key);
-      localStorage.setItem(key, text);
-      edit_selector.innerHTML=md.render(text);
+for (let i = 0; i < edit_idea.length; i++){
+  edit_idea[i].addEventListener("click", (event) => {
+  let edit_selector = event.target.closest(".modal-content").childNodes[3];
+  let key = event.target.closest(".modal.fade").id;
+  let form = document.createElement("form");
+  form.innerHTML = form_template;
+  form.querySelector(".form-control").innerText = JSON.parse(localStorage.getItem(key)).text;
+  edit_selector.appendChild(form);
+  form.querySelector(".mb-2").addEventListener("click", () =>{
+    let text = form.querySelector(".form-control").value;
+    let my_idea = JSON.parse(localStorage.getItem(key));
+    my_idea.text = text;
+    localStorage.removeItem(key);
+    
+    localStorage.setItem(key, JSON.stringify(my_idea));
+    edit_selector.innerHTML=md.render(text);
     })
 
-    })
+  })
 
 }
 
@@ -138,7 +187,9 @@ document.querySelector(".mb-2").addEventListener("click", () => {
   if((key != "") && (text != "")) {
 
     key = key.replace(/\s+/g, '_');
-    localStorage.setItem(key, text);
+    let my_idea = Object.create(idea);
+    my_idea.init(text);
+    localStorage.setItem(key, JSON.stringify(my_idea));
     createModal(key);
   }
 })
