@@ -35,7 +35,6 @@ function createModal(key) {
 
 var MarkdownIt = require('markdown-it'),
 md = new MarkdownIt();
-//localStorage.clear();
 const modal_template = `<button id="plans" type="button" class="btn btn-primary" data-toggle="modal" data-target="#PLANS">
   sunicornsmes
 </button>
@@ -61,6 +60,14 @@ const modal_template = `<button id="plans" type="button" class="btn btn-primary"
     </div>
   </div>
 </div>`;
+
+const form_template =`
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Your plan to conquer the world</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                </div>`;
+
 
 let text = "# Snowmania \n## byRomain \nThe *goal* is to make snow fall **perpetually** so that people will always have their houses covered in snow. As they are all outside they\’ll make snowfights non stop. Having nowhere to live/ warm up they will be freezing to death or die of hypothermia.";
 let text2 = "# Becode is love \n## bySouSou \nMass produce the becode condoms so that the world population rise up steadily. Ten or so years laters the population will more than double. The CO2 quantity in the atmosphere will explode, acidic rain and unhealthy air quality becoming the usual standard. Fifty years later the planet will ends up overusing its resources and the world would start its fall.";
@@ -88,18 +95,40 @@ for (let i = 0; i < localStorage.length; i++) {
   }
 }
 
+//localStorage.clear();
+
+let edit_idea = document.querySelectorAll(".btn-outline-success");
+  for (let i = 0; i < edit_idea.length; i++){
+
+    edit_idea[i].addEventListener("click", (event) => {
+    let edit_selector = event.target.closest(".modal-content").childNodes[3];
+    let key = event.target.closest(".modal.fade").id;
+    let form = document.createElement("form");
+    form.innerHTML = form_template;
+    form.querySelector(".form-control").innerText = localStorage.getItem(key);
+    edit_selector.appendChild(form);
+    form.querySelector(".mb-2").addEventListener("click", () =>{
+      let text = form.querySelector(".form-control").value;
+      localStorage.removeItem(key);
+      localStorage.setItem(key, text);
+      edit_selector.innerHTML=md.render(text);
+    })
+
+    })
+
+}
+
 let delete_idea = document.querySelectorAll(".btn-outline-danger");
 
   for (let i = 0; i < delete_idea.length; i++) {
-
-    delete_idea[i].addEventListener("click", (event) => {
+      delete_idea[i].addEventListener("click", (event) => {
       let selector  = event.target.closest(".modal.fade").id;
       $("#" + selector).modal('hide');
       localStorage.removeItem(selector);
       event.target.closest(".modal.fade").parentElement.innerHTML = "";
       console.log(event);
     })
-  }
+}
 
 document.querySelector(".mb-2").addEventListener("click", () => {
 
