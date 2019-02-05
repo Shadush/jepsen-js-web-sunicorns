@@ -117,10 +117,10 @@ function createModal(key) {
 let delete_idea = document.querySelectorAll(".btn-outline-danger");
   for(let i = 0; i < delete_idea.length; i++) {
     delete_idea[i].addEventListener("click", (event) => {
-      $("#" + event.target.parentElement.parentElement.parentElement.parentElement.id).modal('hide');
-      localStorage.removeItem(event.target.parentElement.parentElement.parentElement.parentElement.id);
-      event.target.parentElement.parentElement.parentElement.parentElement.parentElement.innerHTML = "";
-
+      let selector  = event.target.closest(".modal.fade").id;
+      $("#" + selector).modal('hide');
+      localStorage.removeItem(selector);
+      event.target.closest(".modal.fade").parentElement.innerHTML = "";
       console.log(event);
     })
   }
