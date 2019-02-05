@@ -13,7 +13,15 @@
 }
 .title{
   background: url('images/logo-sunicorns.png') no-repeat bottom;
-
+  transition: background 3s;
+}
+.title:hover{
+  background: url('images/unicorn.png') no-repeat;
+}
+.title:hover h1{
+  font-family: 'Satisfy', cursive;
+  text-shadow: purple 1px 0 10px;
+  color:pink;
 }
 .title h1{
   font-family: 'Kaushan Script', cursive;
@@ -28,12 +36,16 @@
   background:rgba(0,0,0,0);
 
 }
+.title:hover ~ .container .content .btn{
+  background: linear-gradient(#eec0c6, #e58c8a);
+}
 header h1, header h2{
   background:rgba(0,0,0,0.5);
 }
 
 body{
   background: linear-gradient(red, Black) no-repeat fixed;
+
 
 }
 
