@@ -13,8 +13,11 @@ import "./style.scss";
   Put the JavaScript code you want below.
 */
 
-import {markdown} from 'markdown';
+var MarkdownIt = require('markdown-it'),
+md = new MarkdownIt();
 
+
+//localStorage.clear();
 const modal_template = `<button id="plans" type="button" class="btn btn-primary" data-toggle="modal" data-target="#PLANS">
   sunicornsmes
 </button>
@@ -43,19 +46,14 @@ const modal_template = `<button id="plans" type="button" class="btn btn-primary"
 
 
 
-let text = "# Snowmania \n" + "## byRomain \n" + "The *goal* is to make snow fall **perpetually** so that people will always have their houses covered in snow. As they are all outside they\’ll make snowfights non stop. Having nowhere to live/ warm up they will be freezing to death or die of hypothermia.";
-let text2 = "# Becode_is_love \n" + "## bySouSou \n" + "Mass produce the becode condoms so that the world population rise up steadily. Ten or so years laters the population will more than double. The CO2 quantity in the atmosphere will explode, acidic rain and unhealthy air quality becoming the usual standard. Fifty years later the planet will ends up overusing its resources and the world would start its fall. ";
-let text3 = "# Plan_42_to conquer the world \n" + "## by SouSou \n" + "Since we are such good devs (and hackers), we can easily infiltrate databases around the world. Not random and futile ones but the databases which store the most embarrassing stuff you can imagine.  I talk photos you send to your SO, your face when you went to prom (#blunderyears).  Nobody is safe : Snapchat, Facebook, ... I said nobody is safe. When we have the good stuff, we can blackmail anyone to get what we want.";
-let text4 = "# Conquer_the_world \n" + "## By Stéphanie \n" + " Conquer the world by destroying large societies to take their database ! If they aren\’t willing, take their families hostage.";
-let text5 = "# Animals!\n" + "## By Stéphanie \n" + " Animals will conquer the world. They will scheme to replace humans as society leaders. And lead the world to do whatever they want with it. Humans will be the slaves of animals.";
-let text6 = "# Opération Folamour \n"  + "##Take control of all the nuclear warheads on the planet.\n" + " After blowing up several of the world\’s largest cities.... It will be easier to ask for full control of the world.";
+let text = "# Snowmania \n## byRomain \nThe *goal* is to make snow fall **perpetually** so that people will always have their houses covered in snow. As they are all outside they\’ll make snowfights non stop. Having nowhere to live/ warm up they will be freezing to death or die of hypothermia.";
+let text2 = "# Becode is love \n## bySouSou \nMass produce the becode condoms so that the world population rise up steadily. Ten or so years laters the population will more than double. The CO2 quantity in the atmosphere will explode, acidic rain and unhealthy air quality becoming the usual standard. Fifty years later the planet will ends up overusing its resources and the world would start its fall.";
+let text3 = "# Plan42 to conquer the world  \n## by SouSou  \nSince we are such good devs (and hackers), we can easily infiltrate databases around the world. Not random and futile ones but the databases which store the most embarrassing stuff you can imagine.  I talk photos you send to your SO, your face when you went to prom (#blunderyears).  Nobody is safe : Snapchat, Facebook, ... I said nobody is safe. When we have the good stuff, we can blackmail anyone to get what we want.";
+let text4 = "# Conquer the world \n## By Stéphanie  \nConquer the world by destroying large societies to take their database ! If they aren\’t willing, take their families hostage.";
+let text5 = "# Animals! \n## By Stéphanie \nAnimals will conquer the world. They will scheme to replace humans as society leaders. And lead the world to do whatever they want with it. Humans will be the slaves of animals.";
+let text6 = "# Opération Folamour \n## Take control of all the nuclear warheads on the planet.\nAfter blowing up several of the world\’s largest cities.... It will be easier to ask for full control of the world.";
 
-text = markdown.toHTML(text);
-text2 = markdown.toHTML(text2);
-text3 = markdown.toHTML(text3);
-text4 = markdown.toHTML(text4);
-text5 = markdown.toHTML(text5);
-text6 = markdown.toHTML(text6);
+
 
 var nbvisites = localStorage.getItem('visites');
 //console.log(nbvisites);
@@ -76,7 +74,7 @@ for (let i = 0; i < localStorage.length; i++) {
   }
 }
 
-
+console.log(localStorage.getItem('Plan_42'));
 //console.log(localStorage.length);
 
 
@@ -103,14 +101,16 @@ function createModal(key) {
   div.innerHTML = modal_template;
   document.querySelector(".content").appendChild(div);
   let id = document.getElementById('plans');
-  //console.log(id);
+
+  div.querySelector(".btn").innerText = key;
+  //console.log(key);
+
+  //console.log(localStorage.getItem(key));
+  div.querySelector(".modal-body").innerHTML = md.render(localStorage.getItem(key));
   id.dataset.target = "#" + key;
   id.id = "#" + key;
   //console.log(id.dataset.target);
   document.querySelector("#PLANS").id = key;
-  div.querySelector(".btn").innerText = key;
-  div.querySelector(".modal-body").innerHTML = localStorage.getItem(key);
-
 
 }
 
@@ -124,6 +124,26 @@ let delete_idea = document.querySelectorAll(".btn-outline-danger");
       console.log(event);
     })
   }
+
+document.querySelector(".mb-2").addEventListener("click", () => {
+
+  let key = document.querySelector(".form-control").value;
+  let text = document.querySelector("#exampleFormControlTextarea1").value;
+  console.log(key);
+  console.log(text);
+  if((key != "") && (text != "")) {
+
+
+    key = key.replace(/\s+/g, '_');
+    localStorage.setItem(key, text);
+    console.log(key);
+    console.log(text);
+    createModal(key);
+  }
+
+
+})
+
 
 
 console.log("Hey look in your browser console. It works!");
