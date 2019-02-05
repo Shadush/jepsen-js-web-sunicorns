@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-  <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>BeCode/JavaScript for the Web Exercise</title>
+
+  <link rel="icon" href="images/logo_sunicorns_16_16.ico" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
 </head>
-<body>
+
+<body id="rain">
   <div class="title">
     <h1> Sunicorns</h1>
   </div>
@@ -17,7 +27,7 @@
     </header>
     <div class="content">
       <!-- Create idea modal -->
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Create idea</button>
+      <button type="button" id="purple" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Create idea</button>
 
       <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -33,37 +43,9 @@
           </div>
         </div>
       </div>
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        sunicornsmes
-      </button>
-
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="Sunicorns" id="exampleModalLabel">Sunicorns</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              ...
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-outline-primary">Comment idea</button>
-              <button type="button" class="btn btn-outline-success">Edit idea</button>
-              <button type="button" class="btn btn-outline-danger">Delete idea</button>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 
 
     <script src="./script.js"></script>
 </body>
-
 </html>
