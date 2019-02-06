@@ -74,9 +74,9 @@ const modal_template = `<button id="plans" type="button" class="btn btn-primary"
       <div class="modal-body">
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-primary">Comment idea</button>
-        <button type="button" class="btn btn-outline-success">Edit idea</button>
-        <button type="button" class="btn btn-outline-danger">Delete idea</button>
+        <button type="button" class="btn btn-outline-primary">Comment</button>
+        <button type="button" class="btn btn-outline-success">Edit</button>
+        <button type="button" class="btn btn-outline-danger">Delete</button>
       </div>
     </div>
   </div>
