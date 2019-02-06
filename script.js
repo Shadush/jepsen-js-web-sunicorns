@@ -149,6 +149,8 @@ for (let i = 0; i < comment_idea.length; i++){
     let form = document.createElement("form");
     form.innerHTML = form_template;
     edit_selector.appendChild(form);
+    event.target.parentElement.innerHTML = "";
+
 
     form.querySelector(".mb-2").addEventListener("click", () =>{
 
@@ -174,6 +176,7 @@ for (let i = 0; i < edit_idea.length; i++){
     form.innerHTML = form_template;
     form.querySelector(".form-control").value = JSON.parse(localStorage.getItem(key)).text;
     edit_selector.appendChild(form);
+    event.target.parentElement.innerHTML = "";
 
     form.querySelector(".mb-2").addEventListener("click", () =>{
 
