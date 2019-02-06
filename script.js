@@ -121,13 +121,7 @@ if (nbvisites == null) {
   storeElement('Folamour', JSON.stringify(idea_six));
   nbvisites = 1;
   storeElement('visites', 1);
-
 }
-
-//localStorage.clear();
-
-
-
 
 
 for (let i = 0; i < localStorage.length; i++) {
@@ -138,7 +132,8 @@ for (let i = 0; i < localStorage.length; i++) {
 }
 
 
-let comment_idea =  document.querySelectorAll(".btn-outline-primary");
+
+let comment_idea = document.querySelectorAll(".btn-outline-primary");
 
 for (let i = 0; i < comment_idea.length; i++){
 
@@ -151,8 +146,7 @@ for (let i = 0; i < comment_idea.length; i++){
     edit_selector.appendChild(form);
     event.target.parentElement.innerHTML = "";
 
-
-    form.querySelector(".mb-2").addEventListener("click", () =>{
+    form.querySelector(".mb-2").addEventListener("click", () => {
 
       let comment = form.querySelector(".form-control").value;
       let my_idea = JSON.parse(localStorage.getItem(key));
@@ -162,6 +156,7 @@ for (let i = 0; i < comment_idea.length; i++){
     })
   })
 }
+
 
 
 let edit_idea = document.querySelectorAll(".btn-outline-success");
@@ -191,6 +186,7 @@ for (let i = 0; i < edit_idea.length; i++){
   })
 
 }
+
 
 let delete_idea = document.querySelectorAll(".btn-outline-danger");
 
