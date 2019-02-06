@@ -42,11 +42,14 @@ function createModal(key) {
   let my_idea = JSON.parse(localStorage.getItem(key));
   modal_body.innerHTML = md.render(my_idea.text);
   modal_body.appendChild(div_comment);
+
   for(let comment of my_idea.comment){
+
     let p = document.createElement("p");
     p.innerText = comment;
     div_comment.appendChild(p);
   }
+
   id.dataset.target = "#" + key;
   id.id = "#" + key;
   document.querySelector("#PLANS").id = key;
@@ -54,6 +57,7 @@ function createModal(key) {
 
 var MarkdownIt = require('markdown-it'),
 md = new MarkdownIt();
+
 const modal_template = `<button id="plans" type="button" class="btn btn-primary" data-toggle="modal" data-target="#PLANS">
   sunicornsmes
 </button>
@@ -95,6 +99,7 @@ let text6 = "# Opération Folamour \n## Take control of all the nuclear warheads
 var nbvisites = localStorage.getItem('visites');
 
 if (nbvisites == null) {
+
   let idea_one = Object.create(idea);
   idea_one.init(text);
   let idea_two = Object.create(idea);
@@ -107,8 +112,6 @@ if (nbvisites == null) {
   idea_five.init(text5);
   let idea_six = Object.create(idea);
   idea_six.init(text6);
-
-
 
   storeElement('Snowmania', JSON.stringify(idea_one));
   storeElement('Becode_is_love', JSON.stringify(idea_two));
@@ -140,12 +143,15 @@ let comment_idea =  document.querySelectorAll(".btn-outline-primary");
 for (let i = 0; i < comment_idea.length; i++){
 
   comment_idea[i].addEventListener("click", (event) => {
+
     let edit_selector = event.target.closest(".modal-content").childNodes[3];
     let key = event.target.closest(".modal.fade").id;
     let form = document.createElement("form");
     form.innerHTML = form_template;
     edit_selector.appendChild(form);
+
     form.querySelector(".mb-2").addEventListener("click", () =>{
+
       let comment = form.querySelector(".form-control").value;
       let my_idea = JSON.parse(localStorage.getItem(key));
       my_idea.comment.push(comment);
@@ -161,20 +167,22 @@ let edit_idea = document.querySelectorAll(".btn-outline-success");
 for (let i = 0; i < edit_idea.length; i++){
 
   edit_idea[i].addEventListener("click", (event) => {
-  let edit_selector = event.target.closest(".modal-content").childNodes[3];
-  let key = event.target.closest(".modal.fade").id;
-  let form = document.createElement("form");
-  form.innerHTML = form_template;
-  form.querySelector(".form-control").value = JSON.parse(localStorage.getItem(key)).text;
-  edit_selector.appendChild(form);
-  form.querySelector(".mb-2").addEventListener("click", () =>{
-    let text = form.querySelector(".form-control").value;
-    let my_idea = JSON.parse(localStorage.getItem(key));
-    my_idea.text = text;
-    localStorage.removeItem(key);
 
-    localStorage.setItem(key, JSON.stringify(my_idea));
-    edit_selector.innerHTML=md.render(text);
+    let edit_selector = event.target.closest(".modal-content").childNodes[3];
+    let key = event.target.closest(".modal.fade").id;
+    let form = document.createElement("form");
+    form.innerHTML = form_template;
+    form.querySelector(".form-control").value = JSON.parse(localStorage.getItem(key)).text;
+    edit_selector.appendChild(form);
+
+    form.querySelector(".mb-2").addEventListener("click", () =>{
+
+      let text = form.querySelector(".form-control").value;
+      let my_idea = JSON.parse(localStorage.getItem(key));
+      my_idea.text = text;
+      localStorage.removeItem(key);
+      localStorage.setItem(key, JSON.stringify(my_idea));
+      edit_selector.innerHTML = md.render(text);
     })
 
   })
@@ -184,11 +192,13 @@ for (let i = 0; i < edit_idea.length; i++){
 let delete_idea = document.querySelectorAll(".btn-outline-danger");
 
   for (let i = 0; i < delete_idea.length; i++) {
+
       delete_idea[i].addEventListener("click", (event) => {
-      let selector  = event.target.closest(".modal.fade").id;
-      $("#" + selector).modal('hide');
-      localStorage.removeItem(selector);
-      event.target.closest(".modal.fade").parentElement.innerHTML = "";
+
+        let selector  = event.target.closest(".modal.fade").id;
+        $("#" + selector).modal('hide');
+        localStorage.removeItem(selector);
+        event.target.closest(".modal.fade").parentElement.innerHTML = "";
     })
 }
 
