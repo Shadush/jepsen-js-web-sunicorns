@@ -89,6 +89,11 @@ const form_template =`
                   <button type="submit" class="btn btn-primary mb-2">Submit</button>
                 </div>`;
 
+const button_template = `<button type="button" class="btn btn-outline-primary">Comment</button>
+<button type="button" class="btn btn-outline-success">Edit</button>
+<button type="button" class="btn btn-outline-danger">Delete</button>`
+
+
 
 let text = "# Snowmania \n## byRomain \nThe *goal* is to make snow fall **perpetually** so that people will always have their houses covered in snow. As they are all outside they\’ll make snowfights non stop. Having nowhere to live/ warm up they will be freezing to death or die of hypothermia.";
 let text2 = "# Becode is love \n## bySouSou \nMass produce the becode condoms so that the world population rise up steadily. Ten or so years laters the population will more than double. The CO2 quantity in the atmosphere will explode, acidic rain and unhealthy air quality becoming the usual standard. Fifty years later the planet will ends up overusing its resources and the world would start its fall.";
@@ -144,7 +149,10 @@ for (let i = 0; i < comment_idea.length; i++){
     let form = document.createElement("form");
     form.innerHTML = form_template;
     edit_selector.appendChild(form);
-    event.target.parentElement.innerHTML = "";
+    let x = event.target.parentElement;
+    x.childNodes[1].style.display = "none";
+    x.childNodes[3].style.display = "none";
+    x.childNodes[5].style.display = "none";
 
     form.querySelector(".mb-2").addEventListener("click", () => {
 
@@ -153,6 +161,9 @@ for (let i = 0; i < comment_idea.length; i++){
       my_idea.comment.push(comment);
       localStorage.removeItem(key);
       localStorage.setItem(key, JSON.stringify(my_idea));
+      x.childNodes[1].style.display = "block";
+      x.childNodes[3].style.display = "block";
+      x.childNodes[5].style.display = "block";
     })
   })
 }
@@ -171,9 +182,12 @@ for (let i = 0; i < edit_idea.length; i++){
     form.innerHTML = form_template;
     form.querySelector(".form-control").value = JSON.parse(localStorage.getItem(key)).text;
     edit_selector.appendChild(form);
-    event.target.parentElement.innerHTML = "";
+    let x = event.target.parentElement;
+    x.childNodes[1].style.display = "none";
+    x.childNodes[3].style.display = "none";
+    x.childNodes[5].style.display = "none";
 
-    form.querySelector(".mb-2").addEventListener("click", () =>{
+    form.querySelector(".mb-2").addEventListener("click", (event) => {
 
       let text = form.querySelector(".form-control").value;
       let my_idea = JSON.parse(localStorage.getItem(key));
@@ -181,6 +195,10 @@ for (let i = 0; i < edit_idea.length; i++){
       localStorage.removeItem(key);
       localStorage.setItem(key, JSON.stringify(my_idea));
       edit_selector.innerHTML = md.render(text);
+      x.childNodes[1].style.display = "block";
+      x.childNodes[3].style.display = "block";
+      x.childNodes[5].style.display = "block";
+
     })
 
   })
